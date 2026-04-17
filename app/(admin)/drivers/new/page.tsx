@@ -12,8 +12,6 @@ import { Alert, AlertDescription } from '@/components/ui/alert'
 import { ArrowLeft, Loader2 } from 'lucide-react'
 import Link from 'next/link'
 
-export const dynamic = 'force-dynamic'
-
 export default function NewDriverPage() {
   const router = useRouter()
   const supabase = createClient()
