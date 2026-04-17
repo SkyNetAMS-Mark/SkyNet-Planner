@@ -4,6 +4,9 @@ import { Sidebar } from '@/components/admin/sidebar'
 import { Header } from '@/components/admin/header'
 import { Toaster } from '@/components/ui/sonner'
 
+// Opt out of static prerendering for all admin routes
+export const dynamic = 'force-dynamic'
+
 export default async function AdminLayout({
   children,
 }: {

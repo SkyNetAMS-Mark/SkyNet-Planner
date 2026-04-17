@@ -5,6 +5,9 @@ import { Badge } from '@/components/ui/badge'
 import { Plus, Truck } from 'lucide-react'
 import Link from 'next/link'
 
+// Opt out of static prerendering
+export const dynamic = 'force-dynamic'
+
 export default async function DriversPage() {
   const supabase = await createClient()
 
