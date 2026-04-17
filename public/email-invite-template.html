@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kies uw aflevermoment - SkyNet</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #f5f5f5;">
+    <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f5f5f5; padding: 40px 0;">
+        <tr>
+            <td align="center">
+                <table width="600" cellpadding="0" cellspacing="0" style="background-color: #ffffff; border-radius: 4px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                    <!-- Header -->
+                    <tr>
+                        <td style="background-color: #0066cc; padding: 30px; text-align: center;">
+                            <h1 style="margin: 0; color: #ffffff; font-size: 22px; font-weight: 600;">SkyNet Worldwide Express</h1>
+                            <p style="margin: 12px 0 0 0; color: #ffffff; font-size: 15px; opacity: 0.9;">Kies uw aflevermoment &bull; Choose your delivery slot</p>
+                        </td>
+                    </tr>
+
+                    <!-- Dutch Section -->
+                    <tr>
+                        <td style="padding: 35px 30px 25px 30px;">
+                            <p style="margin: 0 0 18px 0; color: #333333; font-size: 15px; line-height: 1.6;">
+                                Geachte <strong>{{RECEIVER_NAME}}</strong>,
+                            </p>
+
+                            <p style="margin: 0 0 18px 0; color: #333333; font-size: 15px; line-height: 1.6;">
+                                Uw pakket van <strong>{{SENDER_COMPANY}}</strong> staat klaar voor bezorging op uw adres in <strong>{{POSTAL_CODE}}</strong>.
+                            </p>
+
+                            <p style="margin: 0 0 25px 0; color: #333333; font-size: 15px; line-height: 1.6;">
+                                Kies uw gewenste aflevermoment via onderstaande knop:
+                            </p>
+
+                            <!-- Dutch CTA Button -->
+                            <table width="100%" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td align="center" style="padding: 5px 0 20px 0;">
+                                        <a href="{{SLOT_SELECTION_URL}}" style="display: inline-block; background-color: #0066cc; color: #ffffff; text-decoration: none; padding: 14px 32px; border-radius: 4px; font-size: 15px; font-weight: 600;">
+                                            Plan een nieuwe afleverafspraak
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- Divider -->
+                    <tr>
+                        <td style="padding: 0 30px;">
+                            <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 0;">
+                        </td>
+                    </tr>
+
+                    <!-- English Section -->
+                    <tr>
+                        <td style="padding: 25px 30px 35px 30px;">
+                            <p style="margin: 0 0 18px 0; color: #333333; font-size: 15px; line-height: 1.6;">
+                                Dear <strong>{{RECEIVER_NAME}}</strong>,
+                            </p>
+
+                            <p style="margin: 0 0 18px 0; color: #333333; font-size: 15px; line-height: 1.6;">
+                                Your parcel from <strong>{{SENDER_COMPANY}}</strong> is ready for delivery to your address in <strong>{{POSTAL_CODE}}</strong>.
+                            </p>
+
+                            <p style="margin: 0 0 25px 0; color: #333333; font-size: 15px; line-height: 1.6;">
+                                Choose your preferred delivery slot via the button below:
+                            </p>
+
+                            <!-- English CTA Button -->
+                            <table width="100%" cellpadding="0" cellspacing="0">
+                                <tr>
+                                    <td align="center" style="padding: 5px 0 20px 0;">
+                                        <a href="{{SLOT_SELECTION_URL}}" style="display: inline-block; background-color: #0066cc; color: #ffffff; text-decoration: none; padding: 14px 32px; border-radius: 4px; font-size: 15px; font-weight: 600;">
+                                            Schedule a new delivery appointment
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- Parcel Details -->
+                    <tr>
+                        <td style="padding: 0 30px 30px 30px;">
+                            <table width="100%" cellpadding="0" cellspacing="0" style="background-color: #f8f9fa; border-radius: 4px; padding: 20px;">
+                                <tr>
+                                    <td>
+                                        <p style="margin: 0 0 15px 0; color: #666666; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Zendinggegevens / Shipment details</p>
+                                        <table width="100%" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                                <td style="padding: 6px 0; color: #666666; font-size: 14px;">Afzender / Sender:</td>
+                                                <td style="padding: 6px 0; color: #333333; font-size: 14px; font-weight: 600; text-align: right;">{{SENDER_COMPANY}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 6px 0; color: #666666; font-size: 14px;">Zending nummer / Shipment number:</td>
+                                                <td style="padding: 6px 0; color: #333333; font-size: 14px; font-weight: 600; text-align: right;">{{TRACKING_NUMBER}}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding: 6px 0; color: #666666; font-size: 14px;">Bezorgadres / Delivery address:</td>
+                                                <td style="padding: 6px 0; color: #333333; font-size: 14px; font-weight: 600; text-align: right;">{{RECEIVER_ADDRESS}}</td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- Footer -->
+                    <tr>
+                        <td style="background-color: #f8f9fa; padding: 25px 30px; text-align: center; border-top: 1px solid #e5e7eb;">
+                            <p style="margin: 0 0 8px 0; color: #666666; font-size: 14px;">
+                                <a href="mailto:cs@skynet.nl" style="color: #0066cc; text-decoration: none;">cs@skynet.nl</a> &nbsp;|&nbsp; <a href="https://www.skynet.nl" style="color: #0066cc; text-decoration: none;">www.skynet.nl</a>
+                            </p>
+                            <p style="margin: 0 0 8px 0; color: #666666; font-size: 14px; font-weight: 600;">
+                                SkyNet Worldwide Express
+                            </p>
+                            <p style="margin: 0; color: #999999; font-size: 12px;">
+                                This is an automated message. Please do not reply.
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
