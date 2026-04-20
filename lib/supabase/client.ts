@@ -10,18 +10,21 @@ export function createClient() {
     return browserClient
   }
 
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+
+  if (!url || !key) {
+    return null
+  }
+
   browserClient = createBrowserClient<Database>(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+    url,
+    key,
     {
       auth: {
-        // Explicitly enable auto token refresh
         autoRefreshToken: true,
-        // Persist session across browser tabs/windows
         persistSession: true,
-        // Detect OAuth redirects
         detectSessionInUrl: true,
-        // Use PKCE flow for better security
         flowType: 'pkce',
       },
     }

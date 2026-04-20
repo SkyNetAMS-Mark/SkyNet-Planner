@@ -40,13 +40,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const pathname = usePathname()
   const supabase = createClient()
 
-  // Function to refresh the session
   const refreshSession = useCallback(async () => {
+    if (!supabase) return
     try {
       const { data: { session }, error } = await supabase.auth.refreshSession()
       if (error) {
         console.error('Session refresh error:', error)
-        // If refresh fails and we're on a protected route, redirect to login
         if (PROTECTED_ROUTES.some(route => pathname?.startsWith(route))) {
           router.push('/login')
         }
@@ -56,10 +55,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     } catch (error) {
       console.error('Unexpected error refreshing session:', error)
     }
-  }, [supabase.auth, pathname, router])
+  }, [supabase, pathname, router])
 
   useEffect(() => {
-    // Get initial session
+    if (!supabase) {
+      setLoading(false)
+      return
+    }
+
     const initializeAuth = async () => {
       try {
         const { data: { session } } = await supabase.auth.getSession()
@@ -73,7 +76,6 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     initializeAuth()
 
-    // Listen for auth state changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event: AuthChangeEvent, session: Session | null) => {
         console.log('Auth state changed:', event)
@@ -85,14 +87,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
           case 'SIGNED_OUT':
             setUser(null)
-            // Only redirect if we're on a protected route
             if (PROTECTED_ROUTES.some(route => pathname?.startsWith(route))) {
               router.push('/login')
             }
             break
 
           case 'TOKEN_REFRESHED':
-            // Token was refreshed successfully - update user state
             setUser(session?.user ?? null)
             break
 
@@ -106,31 +106,26 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             break
 
           default:
-            // For any other events, update user state
             setUser(session?.user ?? null)
         }
       }
     )
 
-    // Set up periodic session refresh (every 4 minutes)
-    // Access tokens typically expire in 1 hour, but refreshing early prevents edge cases
     const refreshInterval = setInterval(() => {
       refreshSession()
-    }, 4 * 60 * 1000) // 4 minutes
+    }, 4 * 60 * 1000)
 
-    // Also refresh when the window regains focus (user returns to tab)
     const handleFocus = () => {
       refreshSession()
     }
     window.addEventListener('focus', handleFocus)
 
-    // Cleanup
     return () => {
       subscription.unsubscribe()
       clearInterval(refreshInterval)
       window.removeEventListener('focus', handleFocus)
     }
-  }, [supabase.auth, pathname, router, refreshSession])
+  }, [supabase, pathname, router, refreshSession])
 
   return (
     <AuthContext.Provider value={{ user, loading, refreshSession }}>
